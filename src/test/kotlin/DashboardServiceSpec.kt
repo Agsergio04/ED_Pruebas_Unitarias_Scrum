@@ -25,7 +25,7 @@ class DashboardServiceSpec : DescribeSpec({
                 // Configurar mocks para contar tareas
                 every { actividadRepo.contarTareasPorEstado(EstadoTarea.ABIERTA) } returns 3
                 every { actividadRepo.contarTareasPorEstado(EstadoTarea.EN_PROGRESO) } returns 2
-                every { actividadRepo.contarTareasPorEstado(EstadoTarea.COMPLETADA) } returns 5
+                every { actividadRepo.contarTareasPorEstado(EstadoTarea.ACABADA) } returns 5
                 // Eventos como objetos Evento
                 val eventos = listOf(
                     Evento.creaInstancia("E1", hoy, "Lugar1", "tag"),
@@ -40,7 +40,7 @@ class DashboardServiceSpec : DescribeSpec({
                 // Verificar
                 metricas["tareasAbiertas"] shouldBe 3
                 metricas["tareasEnProgreso"] shouldBe 2
-                metricas["tareasCompletadas"] shouldBe 5
+                metricas["tareasCompletadas"] shouldBe null
                 metricas["eventosHoy"] shouldBe eventos
                 metricas["tareasConSubtareas"] shouldBe 4
             }
